@@ -17,11 +17,19 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private http: HttpClient,
+    private loadingCtrl: LoadingController
     ) {
+
+      let loading = this.loadingCtrl.create({
+        content: 'Carregando...'
+      });
+
+      loading.present();
 
       this.http.get<Carro[]>(API + '/api/carro/listaTodos')
       .subscribe((carros) => {
         this.carros = carros;
+        loading.dismiss();
       });
     }
 
