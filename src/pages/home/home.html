@@ -1,14 +1,16 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      A-Car
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list inset>
+    <ion-item *ngFor="let carro of carros">
+      {{carro.nome}}
+      <p>R${{carro.preco}},00</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
