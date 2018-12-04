@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Carro } from '../../models/carro';
-
-const API = 'http://localhost:8080'
+import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
 
 @Component({
   selector: 'page-home',
@@ -16,10 +15,12 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private http: HttpClient,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
-  ) {
+    private alertCtrl: AlertController,
+    private carrosService: CarrosServiceProvider
+  ) { }
+
+  ionViewDidLoad(): void {
 
     let loading = this.loadingCtrl.create({
       content: 'Carregando...'
@@ -27,7 +28,7 @@ export class HomePage {
 
     loading.present();
 
-    this.http.get<Carro[]>(API + '/api/carro/listaTodos')
+    this.carrosService.lista()
       .subscribe(
         (carros) => {
           this.carros = carros;
@@ -45,5 +46,4 @@ export class HomePage {
         }
       );
   }
-
 }
