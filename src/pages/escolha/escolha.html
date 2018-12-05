@@ -1,12 +1,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Escolha</ion-title>
+    <ion-title>Carro Selecionado</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item-group>
+    <ion-item-divider color="light">VEÍCULO</ion-item-divider>
+    <ion-item>{{carro.nome}}</ion-item>
+    <ion-item>{{carro.preco}}</ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider color="light">ACESSÓRIOS</ion-item-divider>
+    <ion-item>Acessório 1</ion-item>
+    <ion-item>Acessório 2</ion-item>
+  </ion-item-group>
+
+  <ion-item-divider color="light">
+    <span item-right>Total: R${{carro.preco}},00</span>
+  </ion-item-divider>
+
+  <button ion-button block>Avançar</button>
 
 </ion-content>
