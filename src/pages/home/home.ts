@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -45,5 +45,9 @@ export class HomePage {
           }).present();
         }
       );
+  }
+
+  selecionaCarro(carro:Carro) {
+    console.log(carro);
   }
 }
