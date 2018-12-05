@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { Carro } from '../../models/carro';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
+import { EscolhaPage } from '../escolha/escolha';
 
 @Component({
   selector: 'page-home',
@@ -49,5 +50,6 @@ export class HomePage {
 
   selecionaCarro(carro:Carro) {
     console.log(carro);
+    this.navCtrl.push(EscolhaPage)
   }
 }
