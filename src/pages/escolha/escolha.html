@@ -21,7 +21,7 @@
       VEÍCULO
     </ion-item-divider>
     <ion-item>{{carro.nome}}</ion-item>
-    <ion-item>{{carro.preco}}</ion-item>
+    <ion-item>R$ {{carro.preco}},00</ion-item>
   </ion-item-group>
 
   <ion-item-group>
@@ -32,14 +32,14 @@
     <ion-item *ngFor="let acessorio of acessorios">
       <ion-label>
         <h2>{{ acessorio.nome }}</h2>
-        <h4>{{ acessorio.preco }}</h4>
+        <h4>R$ {{ acessorio.preco }},00</h4>
       </ion-label>
       <ion-toggle color="secondary"></ion-toggle>
     </ion-item>
   </ion-item-group>
 
   <ion-item-divider color="light">
-    <span item-right>Total: R${{carro.preco}},00</span>
+    <span item-right>Total: R$ {{carro.preco}},00</span>
   </ion-item-divider>
 
   <ion-fab top right edge mini>
