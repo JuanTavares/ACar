@@ -10,7 +10,7 @@
   <ion-list inset>
     <ion-item *ngFor="let carro of carros" (click)="selecionaCarro(carro)">
       {{carro.nome}}
-      <p>R${{carro.preco}},00</p>
+      <p>R$ {{carro.preco}},00</p>
     </ion-item>
   </ion-list>
 </ion-content>
