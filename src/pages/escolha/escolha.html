@@ -34,12 +34,12 @@
         <h2>{{ acessorio.nome }}</h2>
         <h4>R$ {{ acessorio.preco }},00</h4>
       </ion-label>
-      <ion-toggle color="secondary"></ion-toggle>
+      <ion-toggle #toggle (ionChange)="atualizaTotal(toggle.checked, acessorio)" color="secondary"></ion-toggle>
     </ion-item>
   </ion-item-group>
 
   <ion-item-divider color="light">
-    <span item-right>Total: R$ {{carro.preco}},00</span>
+    <span item-right>Total: R$ {{precoTotal}},00</span>
   </ion-item-divider>
 
   <ion-fab top right edge mini>
