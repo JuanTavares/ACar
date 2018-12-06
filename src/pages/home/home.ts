@@ -49,7 +49,7 @@ export class HomePage {
   }
 
   selecionaCarro(carro:Carro) {
-    this.navCtrl.push(EscolhaPage, {
+    this.navCtrl.push(EscolhaPage.name, {
       carroSelecionado: carro
     });
   }

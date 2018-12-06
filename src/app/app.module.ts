@@ -13,8 +13,7 @@ import { EscolhaPage } from '../pages/escolha/escolha';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    EscolhaPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -24,8 +23,7 @@ import { EscolhaPage } from '../pages/escolha/escolha';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    EscolhaPage
+    HomePage
   ],
   providers: [
     StatusBar,
