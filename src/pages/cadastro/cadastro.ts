@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Carro } from '../../models/carro';
 
 @IonicPage()
 @Component({
@@ -8,11 +9,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CadastroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  carro: Carro;
+  precoTotal: number;
+
+  nome: string = '';
+  endereco: string = '';
+  email: string = '';
+  data: string = new Date().toISOString();
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.carro = this.navParams.get('carroSelecionado');
+    this.precoTotal = this.navParams.get('precoTotal');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroPage');
+  agendar() {
+    console.log({
+      nome: this.nome,
+      endereco: this.endereco,
+      email: this.email,
+      data: this.data
+    });
   }
 
 }
