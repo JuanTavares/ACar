@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Alert, AlertController } from 'ion
 import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
+import { stringify } from '@angular/compiler/src/util';
 
 @IonicPage()
 @Component({
@@ -40,6 +41,10 @@ export class CadastroPage {
       precoTotal: this.precoTotal,
       data: this.data
     };
+    let mensagem = {
+      title: '',
+      subtitle: ''
+    };
 
     this.alerta = this.alertCtrl.create({
       buttons: [
@@ -53,16 +58,21 @@ export class CadastroPage {
     });
 
     this.agendamentosService.agenda(agendamento)
+      .finally(
+        () => {
+          this.alerta.setTitle(mensagem.title);
+          this.alerta.setSubTitle(mensagem.subtitle);
+          this.alerta.present();
+        }
+      )
       .subscribe(
         () => {
-          this.alerta.setTitle('Parabéns!');
-          this.alerta.setSubTitle('Agendamento realizado com sucesso.');
-          this.alerta.present();
+          mensagem.title = 'Parabéns!';
+          mensagem.subtitle = 'Agendamento realizado com sucesso.';
         },
         () => {
-          this.alerta.setTitle('Aviso');
-          this.alerta.setSubTitle('Falha no agendamento! Tente novamente mais tarde.');
-          this.alerta.present();
+          mensagem.title = 'Aviso';
+          mensagem.subtitle = 'Falha no agendamento! Tente novamente mais tarde.';
         }
       );
   }
