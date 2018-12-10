@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Alert, AlertController } from 'ionic-angular';
 import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -42,7 +43,12 @@ export class CadastroPage {
 
     this.alerta = this.alertCtrl.create({
       buttons: [
-        { text: 'ok' }
+        {
+          text: 'ok',
+          handler: () => {
+            this.navCtrl.setRoot(HomePage);
+          }
+        }
       ]
     });
 
