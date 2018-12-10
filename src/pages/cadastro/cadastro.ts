@@ -34,6 +34,17 @@ export class CadastroPage {
   }
 
   agendar() {
+    if (!this.nome || !this.endereco || !this.email) {
+      this.alertCtrl.create({
+        title: 'Campos Obrigatórios',
+        subTitle: 'Preencha todos os campos!',
+        buttons: [
+          { text: 'ok' }
+        ]
+      }).present();
+
+      return;
+    }
     let agendamento: Agendamento = {
       nomeCliente: this.nome,
       enderecoCliente: this.endereco,
