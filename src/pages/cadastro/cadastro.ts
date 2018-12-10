@@ -4,6 +4,7 @@ import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
 import { stringify } from '@angular/compiler/src/util';
+import { Agendamento } from '../../models/agendamento';
 
 @IonicPage()
 @Component({
@@ -33,11 +34,11 @@ export class CadastroPage {
   }
 
   agendar() {
-    let agendamento = {
+    let agendamento: Agendamento = {
       nomeCliente: this.nome,
       enderecoCliente: this.endereco,
       emailCliente: this.email,
-      modeloCarro: this.carro,
+      modeloCarro: this.carro.nome,
       precoTotal: this.precoTotal,
       data: this.data
     };
