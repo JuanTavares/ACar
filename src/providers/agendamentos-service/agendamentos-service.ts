@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Agendamento } from '../../models/agendamento';
 
 const API = 'http://localhost:8080/api';
 
@@ -8,8 +9,9 @@ export class AgendamentosServiceProvider {
 
   constructor(private http: HttpClient) { }
 
-  agenda(agendamento) {
-    return this.http.post(API + '/agendamento/agenda', agendamento);
+  agenda(agendamento: Agendamento) {
+    return this.http.post(API + '/agendamento/agenda', agendamento)
+    .do(() => agendamento.enviado = true);
   }
 
 }

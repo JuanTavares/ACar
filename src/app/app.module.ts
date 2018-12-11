@@ -11,6 +11,7 @@ import { CarrosServiceProvider } from '../providers/carros-service/carros-servic
 import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
 import 'rxjs/add/operator/finally';
 import { IonicStorageModule } from '@ionic/storage';
+import 'rxjs/add/operator/do';
 
 @NgModule({
   declarations: [
