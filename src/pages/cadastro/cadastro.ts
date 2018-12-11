@@ -51,7 +51,9 @@ export class CadastroPage {
       emailCliente: this.email,
       modeloCarro: this.carro.nome,
       precoTotal: this.precoTotal,
-      data: this.data
+      data: this.data,
+      confirmado: false,
+      enviado: false
     };
     let mensagem = {
       title: '',
