@@ -12,8 +12,8 @@ export class AgendamentosServiceProvider {
 
   agenda(agendamento: Agendamento) {
     return this.http.post(API + '/agendamento/agenda', agendamento)
-    .do(() => agendamento.enviado = true)
-    .catch((err) => Observable.of(new Error('Falha no agendamento! Tente novamente mais tarde.')));
+      .do(() => agendamento.enviado = true)
+      .catch((err) => Observable.of(new Error('Falha no agendamento! Tente novamente mais tarde.')));
   }
 
 }
