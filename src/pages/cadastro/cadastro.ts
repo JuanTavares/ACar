@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams, Alert, AlertController } from 'ion
 import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
-import { stringify } from '@angular/compiler/src/util';
 import { Agendamento } from '../../models/agendamento';
+import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
 
 @IonicPage()
 @Component({
@@ -27,7 +27,8 @@ export class CadastroPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private agendamentosService: AgendamentosServiceProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private agendamentoDao: AgendamentoDaoProvider
   ) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
@@ -51,7 +52,9 @@ export class CadastroPage {
       emailCliente: this.email,
       modeloCarro: this.carro.nome,
       precoTotal: this.precoTotal,
-      data: this.data
+      data: this.data,
+      confirmado: false,
+      enviado: false
     };
     let mensagem = {
       title: '',
@@ -69,7 +72,20 @@ export class CadastroPage {
       ]
     });
 
-    this.agendamentosService.agenda(agendamento)
+    this.agendamentoDao.verificaDuplicado(agendamento)
+      .mergeMap(verificaDuplicado => {
+        if (verificaDuplicado) {
+          throw new Error('Agendamento já existe!')
+        }
+        return this.agendamentosService.agenda(agendamento)
+      })
+      .mergeMap((valor) => {
+        let observable = this.agendamentoDao.salva(agendamento);
+        if (valor instanceof Error) {
+          throw valor;
+        }
+        return observable;
+      })
       .finally(
         () => {
           this.alerta.setTitle(mensagem.title);
@@ -82,9 +98,9 @@ export class CadastroPage {
           mensagem.title = 'Parabéns!';
           mensagem.subtitle = 'Agendamento realizado com sucesso.';
         },
-        () => {
+        (err: Error) => {
           mensagem.title = 'Aviso';
-          mensagem.subtitle = 'Falha no agendamento! Tente novamente mais tarde.';
+          mensagem.subtitle = err.message;
         }
       );
   }
