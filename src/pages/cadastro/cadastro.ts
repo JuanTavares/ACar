@@ -3,8 +3,9 @@ import { IonicPage, NavController, NavParams, Alert, AlertController } from 'ion
 import { Carro } from '../../models/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
-import { stringify } from '@angular/compiler/src/util';
 import { Agendamento } from '../../models/agendamento';
+import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,8 @@ export class CadastroPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private agendamentosService: AgendamentosServiceProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private storage: Storage
   ) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
@@ -72,6 +74,7 @@ export class CadastroPage {
     });
 
     this.agendamentosService.agenda(agendamento)
+      .mergeMap(() => this.salva(agendamento))
       .finally(
         () => {
           this.alerta.setTitle(mensagem.title);
@@ -89,6 +92,13 @@ export class CadastroPage {
           mensagem.subtitle = 'Falha no agendamento! Tente novamente mais tarde.';
         }
       );
+  }
+
+  salva(agendamento) {
+    let chave = this.email + this.data.substr(0, 10);
+    let promise = this.storage.set(chave, agendamento);
+
+    return Observable.fromPromise(promise);
   }
 
 }

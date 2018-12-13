@@ -12,6 +12,8 @@ import { AgendamentosServiceProvider } from '../providers/agendamentos-service/a
 import 'rxjs/add/operator/finally';
 import { IonicStorageModule } from '@ionic/storage';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/mergeMap';
 
 @NgModule({
   declarations: [
