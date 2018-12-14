@@ -20,9 +20,11 @@ export class ListaAgendamentosPage {
 
   ionViewDidLoad() {
     this.agendamentoDao.listaTodos()
-    .subscribe(
-      (agendamentos: Agendamento[]) => this.agendamentos = agendamentos
-    )
+      .subscribe(
+        (agendamentos: Agendamento[]) => {
+          this.agendamentos = agendamentos;
+        }
+      )
   }
 
 }
