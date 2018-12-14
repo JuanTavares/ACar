@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list inset>
-    <ion-item *ngFor="let agendamento of agendamentos">
+    <ion-item [class.falha]="!agendamento.enviado" *ngFor="let agendamento of agendamentos">
       {{agendamento.nomeCliente}} - {{agendamento.modeloCarro}}
     </ion-item>
   </ion-list>
