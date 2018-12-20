@@ -1,17 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Usuario } from '../../models/usuario';
 
-/*
-  Generated class for the UsuariosServiceProvider provider.
+const API = 'http://localhost:8080/api/login'
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UsuariosServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UsuariosServiceProvider Provider');
+  usuarioLogado: Usuario;
+
+  constructor(public http: HttpClient) { }
+
+  efetuaLogin(email, senha) {
+    return this.http
+      .post(API, { email: email, senha: senha })
+      .do((usuario: Usuario) => this.usuarioLogado = usuario);
   }
 
+  obtemUsuarioLogado() {
+    return this.usuarioLogado;
+  }
 }
