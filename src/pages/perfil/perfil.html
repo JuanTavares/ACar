@@ -22,22 +22,22 @@
   <ion-card>
     <ion-item>
       <ion-icon name="contact" item-left></ion-icon>
-      Nome do usuário
+      {{ usuarioLogado.nome }}
     </ion-item>
 
     <ion-item>
       <ion-icon name="calendar" item-left></ion-icon>
-      <p>01/01/1990</p>
+      <p>{{ usuarioLogado.dataNascimento }}</p>
     </ion-item>
 
     <ion-item>
       <ion-icon name="at" item-left></ion-icon>
-      <p>email@email.com</p>
+      <p>{{ usuarioLogado.email }}</p>
     </ion-item>
 
     <ion-item>
       <ion-icon name="call" item-left></ion-icon>
-      <p>21 912345678</p>
+      <p>{{ usuarioLogado.telefone }}</p>
     </ion-item>
   </ion-card>
 </ion-content>
