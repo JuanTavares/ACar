@@ -1,5 +1,7 @@
 {
   "name": "ACar",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
