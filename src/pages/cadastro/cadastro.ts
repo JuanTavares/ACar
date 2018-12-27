@@ -5,6 +5,7 @@ import { AgendamentosServiceProvider } from '../../providers/agendamentos-servic
 import { HomePage } from '../home/home';
 import { Agendamento } from '../../models/agendamento';
 import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
+import { Vibration } from '@ionic-native/vibration';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,8 @@ export class CadastroPage {
     public navParams: NavParams,
     private agendamentosService: AgendamentosServiceProvider,
     private alertCtrl: AlertController,
-    private agendamentoDao: AgendamentoDaoProvider
+    private agendamentoDao: AgendamentoDaoProvider,
+    private vibration: Vibration
   ) {
     this.carro = this.navParams.get('carroSelecionado');
     this.precoTotal = this.navParams.get('precoTotal');
@@ -36,6 +38,9 @@ export class CadastroPage {
 
   agendar() {
     if (!this.nome || !this.endereco || !this.email) {
+
+      this.vibration.vibrate(500);
+
       this.alertCtrl.create({
         title: 'Campos Obrigatórios',
         subTitle: 'Preencha todos os campos!',

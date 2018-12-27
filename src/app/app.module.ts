@@ -18,6 +18,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
+import { Vibration } from '@ionic-native/vibration';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-
     CarrosServiceProvider,
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
-    UsuariosServiceProvider
+    UsuariosServiceProvider,
+    Vibration
   ]
 })
 export class AppModule { }
