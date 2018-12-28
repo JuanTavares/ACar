@@ -19,6 +19,7 @@ import 'rxjs/add/operator/catch';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
 import { Vibration } from '@ionic-native/vibration';
+import { DatePicker } from '@ionic-native/date-picker';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { Vibration } from '@ionic-native/vibration';
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
     UsuariosServiceProvider,
-    Vibration
+    Vibration,
+    DatePicker
   ]
 })
 export class AppModule { }
